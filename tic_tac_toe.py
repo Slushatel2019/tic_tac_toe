@@ -43,8 +43,12 @@ def play():
     available, status, choices, win_combs = init_v()
     draw(status)
     while available:
-        choice_user = int(input("Enter your move: "))
-        if choice_user in available and choice_user > 0 and choice_user < 10:
+        try:
+            choice_user = int(input("Enter your move: "))
+        except ValueError:
+            print("Enter only digit")
+            continue
+        if  choice_user in available and choice_user > 0 and choice_user < 10:
             available.remove(choice_user)
             status[choice_user-1] = "o"
             draw(status)
